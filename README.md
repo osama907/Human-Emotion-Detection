@@ -1,4 +1,4 @@
-# Emotion Detection
+# Final Project: Emotion Detection
 
 A Flask application that sends text to the IBM Watson NLP Emotion Predictions service and displays scores for anger, disgust, fear, joy, sadness, and the dominant emotion.
 
