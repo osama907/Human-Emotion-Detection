@@ -1,3 +1,19 @@
-from emotion_detection import emotion_detector
+from emotion_detection import (
+    EMOTIONS,
+    EmotionDetector,
+    EmotionDetectionError,
+    InvalidImageError,
+    ModelUnavailableError,
+    PredictionError,
+    decode_image,
+)
 
-__all__ = ["emotion_detector"]
+__all__ = [
+    "EMOTIONS",
+    "EmotionDetector",
+    "EmotionDetectionError",
+    "InvalidImageError",
+    "ModelUnavailableError",
+    "PredictionError",
+    "decode_image",
+]

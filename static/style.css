@@ -1,0 +1,172 @@
+:root {
+  color-scheme: light;
+  font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  color: #17233b;
+  background: #f3f5fa;
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  min-width: 320px;
+  margin: 0;
+  padding: 48px 20px;
+}
+
+.shell {
+  width: min(100%, 680px);
+  margin: 0 auto;
+}
+
+.intro {
+  margin-bottom: 28px;
+}
+
+.eyebrow {
+  margin: 0 0 10px;
+  color: #5865d8;
+  font-size: 0.75rem;
+  font-weight: 750;
+  letter-spacing: 0.12em;
+}
+
+h1,
+h2,
+p {
+  margin-top: 0;
+}
+
+h1 {
+  margin-bottom: 12px;
+  font-size: clamp(2.2rem, 8vw, 3.2rem);
+  letter-spacing: -0.055em;
+}
+
+.lede {
+  max-width: 520px;
+  margin-bottom: 0;
+  color: #627087;
+  font-size: 1.05rem;
+  line-height: 1.6;
+}
+
+.panel {
+  margin-top: 20px;
+  padding: clamp(22px, 5vw, 34px);
+  border: 1px solid #e1e5ef;
+  border-radius: 18px;
+  background: #fff;
+  box-shadow: 0 12px 36px rgb(34 47 79 / 6%);
+}
+
+.panel h2 {
+  margin-bottom: 20px;
+  font-size: 1.25rem;
+}
+
+.file-picker {
+  display: block;
+  margin-bottom: 9px;
+  color: #59677e;
+  font-size: 0.9rem;
+}
+
+input[type="file"] {
+  display: block;
+  width: 100%;
+  padding: 14px;
+  border: 1px dashed #b8c0d2;
+  border-radius: 10px;
+  background: #fafbfe;
+  color: #4a5870;
+}
+
+button {
+  width: 100%;
+  margin-top: 16px;
+  padding: 13px 18px;
+  border: 0;
+  border-radius: 10px;
+  background: #5865d8;
+  color: #fff;
+  font: inherit;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+button:hover {
+  background: #4552c3;
+}
+
+button:focus-visible,
+input:focus-visible {
+  outline: 3px solid #aeb5ff;
+  outline-offset: 3px;
+}
+
+.message {
+  margin: 16px 0 0;
+  line-height: 1.5;
+}
+
+.error {
+  color: #a3293b;
+}
+
+.results h2 {
+  margin-bottom: 24px;
+}
+
+.emotion {
+  color: #5865d8;
+}
+
+.score-list {
+  display: grid;
+  gap: 18px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.score-label {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 8px;
+  font-size: 0.92rem;
+  font-weight: 650;
+}
+
+.bar {
+  height: 9px;
+  overflow: hidden;
+  border-radius: 8px;
+  background: #edf0f7;
+}
+
+.bar span {
+  display: block;
+  height: 100%;
+  border-radius: inherit;
+  background: linear-gradient(90deg, #5865d8, #8b70e8);
+}
+
+.note,
+footer {
+  color: #718097;
+  font-size: 0.82rem;
+  line-height: 1.5;
+}
+
+.note {
+  margin: 24px 0 0;
+}
+
+footer {
+  padding: 22px 4px;
+  text-align: center;
+}

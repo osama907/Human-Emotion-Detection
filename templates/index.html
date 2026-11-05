@@ -3,37 +3,52 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Emotion Detection</title>
-  <style>
-    body { font-family: Georgia, serif; margin: 3rem auto; max-width: 42rem; padding: 0 1rem; color: #17324d; }
-    h1 { font-size: 2.4rem; margin-bottom: .4rem; }
-    textarea { width: 100%; min-height: 8rem; padding: .8rem; font: inherit; box-sizing: border-box; }
-    button { margin-top: .8rem; padding: .7rem 1rem; background: #e06b45; color: white; border: 0; cursor: pointer; }
-    .error { color: #a52626; margin-top: 1rem; }
-    .results { margin-top: 2rem; border-top: 1px solid #b9c7d3; padding-top: 1rem; }
-    dt { font-weight: bold; display: inline; } dd { display: inline; margin: 0 1rem 0 .25rem; }
-  </style>
+  <meta name="description" content="Classify an image as angry, happy, or sad.">
+  <title>Image Emotion Detector</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
 </head>
 <body>
-  <h1>Emotion Detection</h1>
-  <p>Analyze the emotional tone of a sentence.</p>
-  <form method="post">
-    <textarea name="text" placeholder="Type something to analyze...">{{ text }}</textarea>
-    <br><button type="submit">Analyze emotion</button>
-  </form>
-  {% if error %}<p class="error" role="alert">{{ error }}</p>{% endif %}
-  {% if result %}
-  <section class="results" aria-live="polite">
-    <h2>Result</h2>
-    <dl>
-      <dt>Anger</dt><dd>{{ result.anger }}</dd>
-      <dt>Disgust</dt><dd>{{ result.disgust }}</dd>
-      <dt>Fear</dt><dd>{{ result.fear }}</dd>
-      <dt>Joy</dt><dd>{{ result.joy }}</dd>
-      <dt>Sadness</dt><dd>{{ result.sadness }}</dd>
-      <dt>Dominant emotion</dt><dd>{{ result.dominant_emotion }}</dd>
-    </dl>
-  </section>
-  {% endif %}
+  <main class="shell">
+    <header class="intro">
+      <p class="eyebrow">IMAGE CLASSIFICATION</p>
+      <h1>Emotion detector</h1>
+      <p class="lede">Upload an image to estimate whether its expression is angry, happy, or sad.</p>
+    </header>
+
+    <section class="panel" aria-labelledby="upload-heading">
+      <h2 id="upload-heading">Choose an image</h2>
+      <form action="{{ url_for('predict_page') }}" method="post" enctype="multipart/form-data">
+        <label class="file-picker" for="image">PNG, JPEG, or WEBP · maximum 8 MB</label>
+        <input id="image" name="image" type="file" accept="image/png,image/jpeg,image/webp" required>
+        <button type="submit">Analyze image</button>
+      </form>
+      {% if error %}
+      <p class="message error" role="alert">{{ error }}</p>
+      {% endif %}
+    </section>
+
+    {% if result %}
+    <section class="panel results" aria-live="polite" aria-labelledby="results-heading">
+      <p class="eyebrow">PREDICTION</p>
+      <h2 id="results-heading">Most likely: <span class="emotion">{{ result.dominant_emotion|title }}</span></h2>
+      <ul class="score-list">
+        {% for emotion in ("angry", "happy", "sad") %}
+        <li>
+          <div class="score-label">
+            <span>{{ emotion|title }}</span>
+            <span>{{ "%.1f"|format(result[emotion] * 100) }}%</span>
+          </div>
+          <div class="bar" role="img" aria-label="{{ emotion|title }}: {{ "%.1f"|format(result[emotion] * 100) }}%">
+            <span style="width: {{ result[emotion] * 100 }}%"></span>
+          </div>
+        </li>
+        {% endfor %}
+      </ul>
+      <p class="note">This model estimates facial expression; it cannot determine how a person actually feels.</p>
+    </section>
+    {% endif %}
+
+    <footer>Predictions are generated locally by the trained model.</footer>
+  </main>
 </body>
 </html>

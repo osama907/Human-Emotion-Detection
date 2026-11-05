@@ -1,0 +1,4 @@
+-r requirements.txt
+tensorflow<2.20
+tf-keras>=2.16,<2.20
+transformers>=4.40,<4.41

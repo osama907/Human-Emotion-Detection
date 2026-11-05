@@ -1,3 +1,8 @@
 Flask>=3.0,<4
-requests>=2.31,<3
+Pillow>=10,<14
+numpy>=1.26,<3
+tensorflow>=2.16,<3
+matplotlib>=3.8,<4
+scikit-learn>=1.4,<2
+seaborn>=0.13,<1
 pytest>=8,<9
